@@ -125,8 +125,11 @@
 </body>
 <script>
     var vowels = document.querySelectorAll("#vowels > .kbbutton");
+    var addtocodepoint = (character,addition) =>{
+        return String.fromCharCode(character.charCodeAt(0)+addition)
+    }
     for(var i = 1; i < vowels.length; i++){
-        vowels[i].innerHTML = String.fromCharCode(vowels[i].innerHTML.charCodeAt(0)+0x38)
+        vowels[i].innerHTML = addtocodepoint(vowels[i].innerHTML[0],0x38)
     } 
 </script>
 </html>
