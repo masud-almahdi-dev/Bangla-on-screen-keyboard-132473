@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangla On-Screen-KB</title>
+    <style>
+        .roboto-light {
+            font-family: "Roboto", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        .roboto-regular,
+        body {
+            font-family: "Roboto", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        #keymap-container {
+            display: flex;
+            width: 100%;
+            & #superbuttons{
+                display: flex;
+                flex-direction: column;
+                gap: 0.3em;
+                margin: 0.66em 0em;
+                padding: 0.66em;
+            }
+            & #separatorA{
+                width: 1em;
+                margin: 0.99em;
+                /* background is gradient from left to right */
+                background: linear-gradient(in oklab to right, rgb(172, 19, 65), rgb(233, 131, 14), rgb(255, 238, 0));
+                border-radius: 0.2em;
+            }
+            & #keymap{
+                display: flex;
+                flex-direction: column;
+                gap: 0.3em;
+                margin: 0.66em 0em;
+                padding: 0.66em;
+                & #vowels{
+                    display: flex;
+                }
+                & #consonents{
+                    display: grid;
+                }
+            }
+        }
+        .kbbutton {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0.5em 1em;
+            background-color: var(--button-bg-color, #ff3460);
+            color: var(--button-text-color, white);
+            border: var(--button-border, 1px solid #ff3460);
+            border-radius: 0.2em;
+            max-width: max-content;
+            cursor: pointer;
+
+            &.outlined-only {
+                background-color: white;
+                color: var(--button-bg-color, #ff3460);
+                border: 1px solid var(--button-bg-color, #ff3460);
+            }
+
+            &.inactive {
+                opacity: 0.3;
+                cursor: default;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="screen">
+        <div id="screen-text">
+            Screen
+        </div>
+    </div>
+    <div id="keyboard">
+        <div id="keyboard-text">
+            <div id="uibuttons">
+                <div class="kbbutton outlined-only">Selected: UTF-8 output</div>
+            </div>
+            <div id="keymap-container">
+                <div id="superbuttons">
+                    <div class="kbbutton">⌘ Super</div>
+                    <div class="kbbutton">⇧ Shift</div>
+                    <div class="kbbutton">⌥ Alt</div>
+                    <div class="kbbutton">⌫ Backspace</div>
+                    <div class="kbbutton">⏎ Enter</div>
+                    <div class="kbbutton">↩ Tab</div>
+                    <div class="kbbutton">⇪ Caps Lock</div>
+                    <div class="kbbutton">⌃ Ctrl</div>
+                </div>
+                <div id="separatorA"></div>
+                <div id="keymap">
+                    <div id="vowels">
+                        <div class="kbbutton">&#x0985;</div>
+                        <div class="kbbutton">&#x0986;</div>
+                        <div class="kbbutton">&#x0987;</div>
+                        <div class="kbbutton">&#x0988;</div>
+                        <div class="kbbutton">&#x0989;</div>
+                        <div class="kbbutton">&#x098A;</div>
+                        <div class="kbbutton">&#x098B;</div>
+                        <div class="kbbutton">&#x098F;</div>
+                        <div class="kbbutton">&#x0990;</div>
+                        <div class="kbbutton">&#x0993;</div>
+                        <div class="kbbutton">&#x0994;</div>
+                    </div>
+                    <div id="consonents">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var vowels = document.querySelectorAll("#vowels > .kbbutton");
+    for(var i = 1; i < vowels.length; i++){
+        vowels[i].innerHTML = String.fromCharCode(vowels[i].innerHTML.charCodeAt(0)+0x38)
+    } 
+</script>
+</html>
