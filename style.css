@@ -1,0 +1,134 @@
+
+:root {
+    --main-color: #ff3460;
+    --hue-offset: 140;
+    font-size: 30px;
+}
+
+.roboto-light {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+body {
+    background-color: hsl(from var(--main-color) calc(h + var(--hue-offset)) calc(s - 80) calc(l - 50));
+    color: white;
+}
+
+.roboto-regular,
+body {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+#uibuttons {
+    display: flex;
+    gap: 0.6em;
+    padding: 0rem 0.66rem;
+}
+
+#keymap-container {
+    display: flex;
+    width: 100%;
+
+    & #superbuttons {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3em;
+        margin: 0.66rem 0rem;
+        padding: 0.66rem;
+    }
+
+    & #separatorA {
+        width: .2rem;
+        margin: 2rem;
+        /* background is gradient from left to right */
+        background: linear-gradient(in oklab to right, rgb(137, 132, 156), rgb(221, 221, 221));
+        border-radius: 0.2rem;
+    }
+
+    & #keymap {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3em;
+        margin: 0.66rem 0rem;
+        padding: 0.66rem;
+
+        & #vowels {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 0.2rem;
+
+            &>.kbbutton {
+                max-width: 100%;
+                flex-direction: column;
+            }
+        }
+
+        & #consonents {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 0.2rem;
+
+            &>.kbbutton {
+                max-width: 100%;
+                flex-direction: column;
+                background-color: hsl(from var(--main-color) calc(h + var(--hue-offset)) calc(s - 50) calc(l - 20));
+            }
+        }
+    }
+}
+
+.kbbutton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.5em 1em;
+    user-select: none;
+    background-color: hsl(from var(--main-color) calc(h + var(--hue-offset)) calc(s - 70) calc(l - 15));
+    color: var(--button-text-color, white);
+    border: 1px solid hsl(from var(--main-color) calc(h + var(--hue-offset)) calc(s - 50) calc(l - 20));
+    border-radius: 0.2rem;
+    max-width: max-content;
+    cursor: pointer;
+
+    &:not(.inactive):hover {
+        filter: brightness(1.2);
+    }
+
+    &.outlined-only {
+        padding: 1em 1.3em;
+        font-size: 0.6rem;
+        background-color: hsl(from var(--main-color) calc(h + var(--hue-offset)) calc(s - 50) calc(l - 40));
+        color: hsl(from var(--main-color) calc(h + var(--hue-offset)) calc(s - 50) calc(l + 30));
+        border: 1px solid hsl(from var(--main-color) calc(h + var(--hue-offset)) calc(s - 50) calc(l - 20));
+    }
+
+    &.inactive {
+        opacity: 0.3;
+        cursor: default;
+    }
+}
+
+#screen-text {
+    margin: 1em 0.6rem;
+    border-radius: 0.3em;
+    padding: 1em;
+    border: 0.1em solid hsl(from var(--main-color) calc(h + var(--hue-offset)) calc(s - 50) calc(l - 20));
+}
+
+.bottommid {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    translate: -50% -100%;
+}
+
+.keystrokes {
+    font-size: 0.6rem;
+    min-height: 0.6rem;
+    height: 0.6rem;
+}
